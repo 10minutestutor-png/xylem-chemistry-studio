@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Xylem Chemistry Studio V3.0</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- TOP HEADER -->
+
+    <header id="appHeader">
+
+        <div class="brand">
+
+            <h1>XYLEM NADAPURAM</h1>
+
+            <div class="brand-subtitle">
+                INTERACTIVE CHEMISTRY STUDIO
+            </div>
+
+        </div>
+
+        
+<div class="header-actions">
+<button type="button"
+        onclick="window.location.href='../index.html'">
+    ⌂ Home
+</button>
+    <button id="menuBtn">
+        ☰ Topics
+    </button>
+
+    <button id="classroomBtn">
+        Classroom Mode
+    </button>
+
+    <button id="toggleToolsBtn"
+            aria-expanded="true">
+        ✎ Hide Tools
+    </button>
+
+    <button id="fullscreenBtn">
+        ⛶ Full Screen
+    </button>
+
+</div>
+
+
+    </header>
+
+
+    <!-- MAIN APPLICATION -->
+
+    <main id="workspace">
+
+        <!-- CHAPTER NAVIGATION -->
+
+        <aside id="sidebar">
+
+            <div class="chapter-label">
+                STANDARD X • CHAPTER 06
+            </div>
+
+            <h2>METALS</h2>
+
+            <input
+                type="search"
+                id="topicSearch"
+                placeholder="Search topics..."
+                autocomplete="off">
+
+            <div id="topicList"></div>
+
+            <div class="sidebar-footer">
+                SCERT CHEMISTRY
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN TEACHING AREA -->
+
+        <section id="stage">
+
+            <div id="sceneHeader">
+
+                <span id="sectionLabel">
+                    CHAPTER 06
+                </span>
+
+                <span id="pageLabel">
+                    Page 121
+                </span>
+
+            </div>
+
+            <div id="sceneContainer">
+
+                <div id="scene">
+
+                    <div class="intro-screen">
+
+                        <div class="eyebrow">
+                            XYLEM NADAPURAM • CHEMISTRY
+                        </div>
+
+                        <h1 class="metal-title">
+                            METALS
+                        </h1>
+
+                        <p class="intro-subtitle">
+                            Exploring the world of metals
+                        </p>
+
+                        <button id="beginBtn">
+                            Begin Exploration →
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- HANDWRITING LAYER -->
+
+                <canvas id="inkCanvas"></canvas>
+
+                <!-- LASER POINTER -->
+
+                <div id="laserPointer"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TEACHER TOOLBAR -->
+
+        <aside id="toolbar">
+
+            <div class="tool-heading">
+                TEACHING TOOLS
+            </div>
+
+            <button
+                id="pointerBtn"
+                class="tool-btn active"
+                data-tool="pointer">
+
+                ↖ Pointer
+
+            </button>
+
+            <button
+                id="penBtn"
+                class="tool-btn"
+                data-tool="pen">
+
+                ✎ Pen
+
+            </button>
+
+            <button
+                id="highlightBtn"
+                class="tool-btn"
+                data-tool="highlight">
+
+                Highlight
+
+            </button>
+
+            <button
+                id="eraserBtn"
+                class="tool-btn"
+                data-tool="eraser">
+
+                Eraser
+
+            </button>
+
+            <button
+                id="laserBtn"
+                class="tool-btn"
+                data-tool="laser">
+
+                ● Laser
+
+            </button>
+
+
+            <!-- PEN COLOURS -->
+
+            <label for="penColor">
+                PEN COLOUR
+            </label>
+
+            <input
+                type="color"
+                id="penColor"
+                value="#ffffff">
+
+            <div class="colour-palette">
+
+                <button
+                    class="colour-dot"
+                    data-color="#ffffff"
+                    style="background:#ffffff"
+                    aria-label="White">
+                </button>
+
+                <button
+                    class="colour-dot"
+                    data-color="#facc15"
+                    style="background:#facc15"
+                    aria-label="Yellow">
+                </button>
+
+                <button
+                    class="colour-dot"
+                    data-color="#ef4444"
+                    style="background:#ef4444"
+                    aria-label="Red">
+                </button>
+
+                <button
+                    class="colour-dot"
+                    data-color="#4ade80"
+                    style="background:#4ade80"
+                    aria-label="Green">
+                </button>
+
+                <button
+                    class="colour-dot"
+                    data-color="#38bdf8"
+                    style="background:#38bdf8"
+                    aria-label="Blue">
+                </button>
+
+                <button
+                    class="colour-dot"
+                    data-color="#e879f9"
+                    style="background:#e879f9"
+                    aria-label="Purple">
+                </button>
+
+            </div>
+
+
+            <!-- PEN THICKNESS -->
+
+            <label for="penWidth">
+                THICKNESS
+            </label>
+
+            <input
+                type="range"
+                id="penWidth"
+                min="1"
+                max="30"
+                value="4">
+
+            <div class="tool-divider"></div>
+
+
+            <!-- DRAWING CONTROLS -->
+
+            <button id="undoBtn">
+                ↶ Undo
+            </button>
+
+            <button id="redoBtn">
+                ↷ Redo
+            </button>
+
+            <button id="clearBtn">
+                Clear Ink
+            </button>
+
+            <button id="saveBtn">
+                Save Ink
+            </button>
+
+            <button id="blankBtn">
+                Blank Board
+            </button>
+
+            <button id="restoreBtn">
+                Return to Lesson
+            </button>
+
+        </aside>
+
+    </main>
+
+
+    <!-- ANIMATION AND LESSON CONTROLS -->
+
+    <footer id="controlBar">
+
+        <div class="navigation-controls">
+
+            <button id="prevBtn">
+                ◀ Previous
+            </button>
+
+            <button id="playBtn">
+                ▶ Play
+            </button>
+
+            <button id="pauseBtn">
+                Ⅱ Pause
+            </button>
+
+            <button id="resetBtn">
+                ↻ Reset
+            </button>
+
+        </div>
+
+        <div class="speed-control">
+
+            <label for="animationSpeed">
+                Speed
+            </label>
+
+            <select id="animationSpeed">
+
+                <option value="0.5">0.5×</option>
+
+                <option value="1" selected>1×</option>
+
+                <option value="1.5">1.5×</option>
+
+                <option value="2">2×</option>
+
+            </select>
+
+        </div>
+
+        <div class="scene-counter">
+
+            <span id="sceneNumber">01</span>
+
+            /
+
+            <span id="totalScenes">32</span>
+
+        </div>
+
+        <button id="nextBtn" class="primary-btn">
+            Next ▶
+        </button>
+
+    </footer>
+
+
+    <!-- LESSON PROGRESS -->
+
+    <div id="progressTrack">
+
+        <div id="lessonProgress"></div>
+
+    </div>
+
+
+    <!-- APPLICATION MODULES -->
+
+    <script src="metals.js"></script>
+
+    <script src="animations.js"></script>
+
+    <script src="quiz.js"></script>
+
+    <script src="whiteboard.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

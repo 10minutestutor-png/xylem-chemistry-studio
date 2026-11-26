@@ -4,24 +4,494 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <title>Xylem Chemistry Studio V3.0</title>
+<meta name="theme-color" content="#080f1c">
 
-    <link rel="stylesheet" href="style.css">
+<title>Xylem Nadapuram | Chemistry Studio</title>
+
+<style>
+
+:root {
+    --bg:#080f1c;
+    --panel:#111e30;
+    --border:#293c55;
+    --text:#f1f5f9;
+    --muted:#94a3b8;
+    --cyan:#38bdf8;
+    --gold:#fbbf24;
+}
+
+* {
+    box-sizing:border-box;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    margin:0;
+    min-height:100vh;
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(
+            ellipse at 20% 0%,
+            #12304b 0%,
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 100% 70%,
+            #14243a 0%,
+            transparent 45%
+        ),
+        var(--bg);
+}
+
+a {
+    color:inherit;
+    text-decoration:none;
+}
+
+/* HEADER */
+
+header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    padding:22px 6%;
+    border-bottom:1px solid #ffffff12;
+    background:#080f1cbb;
+}
+
+.brand {
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.brand-icon {
+    width:48px;
+    height:48px;
+    padding:9px;
+    border:1px solid #38bdf855;
+    border-radius:13px;
+    background:#0c4a6e44;
+}
+
+.brand h1 {
+    margin:0;
+    font-size:clamp(16px,2vw,25px);
+    letter-spacing:1.5px;
+    font-weight:900;
+}
+
+.brand-subtitle {
+    color:var(--cyan);
+    font-size:10px;
+    letter-spacing:2px;
+    margin-top:5px;
+}
+
+.version {
+    padding:8px 14px;
+    border:1px solid var(--border);
+    border-radius:30px;
+    color:var(--muted);
+    font-size:12px;
+    white-space:nowrap;
+}
+
+/* HERO */
+
+main {
+    max-width:1250px;
+    margin:auto;
+    padding:0 30px;
+}
+
+.hero {
+    text-align:center;
+    padding:65px 10px 45px;
+}
+
+.eyebrow {
+    font-size:12px;
+    color:var(--cyan);
+    letter-spacing:4px;
+    font-weight:700;
+}
+
+.hero h2 {
+    font-size:clamp(38px,7vw,90px);
+    letter-spacing:-2px;
+    line-height:1.1;
+    margin:20px 0;
+    background:linear-gradient(
+        110deg,
+        #ffffff,
+        #bae6fd,
+        #38bdf8
+    );
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero h3 {
+    font-size:clamp(18px,2.5vw,28px);
+    font-weight:400;
+    color:#cbd5e1;
+    margin:12px 0;
+}
+
+.hero p {
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.7;
+}
+
+/* CHAPTER CARDS */
+
+.section-heading {
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:22px;
+}
+
+.section-heading h3 {
+    font-size:14px;
+    letter-spacing:3px;
+    color:var(--muted);
+    white-space:nowrap;
+}
+
+.section-heading::after {
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--border);
+}
+
+.chapters {
+    display:grid;
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+    gap:25px;
+}
+
+.chapter {
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:22px;
+    transition:
+        transform .25s,
+        border-color .25s,
+        box-shadow .25s;
+}
+
+.chapter:hover {
+    transform:translateY(-5px);
+    border-color:var(--accent);
+    box-shadow:0 15px 45px #0005;
+}
+
+.electro {
+    --accent:#38bdf8;
+    --button:#0369a1;
+}
+
+.metals {
+    --accent:#fbbf24;
+    --button:#92400e;
+}
+
+.artwork {
+    position:relative;
+    height:250px;
+    overflow:hidden;
+    background:
+        radial-gradient(
+            ellipse at center,
+            #193a52,
+            #091525
+        );
+    border-bottom:1px solid var(--border);
+}
+
+.artwork svg {
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+.chapter-content {
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+
+.chapter-number {
+    color:var(--accent);
+    font-size:12px;
+    letter-spacing:3px;
+    font-weight:700;
+}
+
+.chapter h2 {
+    font-size:clamp(25px,3vw,38px);
+    margin:12px 0;
+    overflow-wrap:anywhere;
+}
+
+.chapter-description {
+    color:#aebed0;
+    line-height:1.8;
+    font-size:15px;
+    flex:1;
+}
+
+.scene-count {
+    color:var(--accent);
+    font-size:13px;
+    margin:12px 0;
+}
+
+.tags {
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin:15px 0 25px;
+}
+
+.tag {
+    border:1px solid var(--border);
+    background:#ffffff05;
+    border-radius:20px;
+    padding:7px 11px;
+    color:#cbd5e1;
+    font-size:11px;
+}
+
+.launch {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:16px 20px;
+    background:var(--button);
+    border:1px solid var(--accent);
+    border-radius:10px;
+    font-size:15px;
+    font-weight:700;
+    transition:filter .2s;
+}
+
+.launch:hover {
+    filter:brightness(1.2);
+}
+
+.launch:focus-visible {
+    outline:3px solid white;
+    outline-offset:4px;
+}
+
+/* STATISTICS */
+
+.statistics {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    padding:35px 0;
+    text-align:center;
+}
+
+.stat {
+    padding:20px 10px;
+}
+
+.stat strong {
+    display:block;
+    color:var(--cyan);
+    font-size:clamp(28px,4vw,42px);
+}
+
+.stat span {
+    display:block;
+    color:var(--muted);
+    font-size:13px;
+    margin-top:8px;
+}
+
+/* FEATURES */
+
+.features {
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:40px;
+}
+
+.feature {
+    border:1px solid var(--border);
+    border-radius:9px;
+    background:#ffffff03;
+    color:#cbd5e1;
+    padding:12px 18px;
+    font-size:13px;
+}
+
+footer {
+    text-align:center;
+    padding:30px 15px;
+    border-top:1px solid var(--border);
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.8;
+}
+
+footer strong {
+    color:var(--text);
+    letter-spacing:2px;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media(max-width:700px) {
+
+    header {
+        padding:15px;
+        gap:10px;
+    }
+
+    .brand {
+        gap:10px;
+    }
+
+    .brand-icon {
+        width:38px;
+        height:38px;
+    }
+
+    .brand h1 {
+        font-size:15px;
+        letter-spacing:.5px;
+    }
+
+    .brand-subtitle {
+        font-size:8px;
+        letter-spacing:1px;
+    }
+
+    .version {
+        padding:6px 9px;
+        font-size:10px;
+    }
+
+    main {
+        padding:0 15px;
+    }
+
+    .hero {
+        padding:40px 0 25px;
+    }
+
+    .hero h2 {
+        letter-spacing:-1px;
+    }
+
+    .eyebrow {
+        font-size:10px;
+        letter-spacing:2px;
+    }
+
+    .chapters {
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .artwork {
+        height:220px;
+    }
+
+    .chapter-content {
+        padding:22px;
+    }
+
+    .statistics {
+        gap:4px;
+        padding:20px 0;
+    }
+
+    .stat span {
+        font-size:11px;
+    }
+
+    .feature {
+        font-size:11px;
+        padding:10px;
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    * {
+        scroll-behavior:auto;
+        transition:none!important;
+    }
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-    <!-- TOP HEADER -->
+<header>
 
-    <header id="appHeader">
+    <div class="brand">
 
-        <div class="brand">
+        <svg class="brand-icon"
+             viewBox="0 0 48 48"
+             fill="none"
+             aria-hidden="true">
+
+            <path d="M18 5 H30
+                     M20 5 V19
+                     L7 39 Q5 43 11 43
+                     H37 Q43 43 41 39
+                     L28 19 V5"
+                  stroke="#38bdf8"
+                  stroke-width="3"
+                  stroke-linejoin="round"/>
+
+            <path d="M14 30 H34
+                     L40 40 H8 Z"
+                  fill="#38bdf8"
+                  opacity=".45"/>
+
+            <circle cx="21" cy="33"
+                    r="3" fill="#bae6fd"/>
+
+            <circle cx="29" cy="25"
+                    r="2" fill="#bae6fd"/>
+
+        </svg>
+
+        <div>
 
             <h1>XYLEM NADAPURAM</h1>
 
@@ -31,356 +501,484 @@
 
         </div>
 
-        
-<div class="header-actions">
+    </div>
 
-    <button id="menuBtn">
-        ☰ Topics
-    </button>
+    <div class="version">V5.0</div>
 
-    <button id="classroomBtn">
-        Classroom Mode
-    </button>
+</header>
 
-    <button id="toggleToolsBtn"
-            aria-expanded="true">
-        ✎ Hide Tools
-    </button>
+<main>
 
-    <button id="fullscreenBtn">
-        ⛶ Full Screen
-    </button>
+    <section class="hero">
 
-</div>
+        <div class="eyebrow">
+            STANDARD X • SCERT KERALA
+        </div>
 
+        <h2>Chemistry Studio</h2>
 
-    </header>
+        <h3>Learn. Explore. Experiment.</h3>
 
+        <p>
+            Experience chemistry beyond the textbook.
+            <br>
+            Interactive lessons, virtual laboratories
+            and classroom teaching tools.
+        </p>
 
-    <!-- MAIN APPLICATION -->
+    </section>
 
-    <main id="workspace">
+    <div class="section-heading">
+        <h3>SELECT YOUR CHAPTER</h3>
+    </div>
 
-        <!-- CHAPTER NAVIGATION -->
+    <section class="chapters">
 
-        <aside id="sidebar">
+        <!-- CHAPTER 05 -->
 
-            <div class="chapter-label">
-                STANDARD X • CHAPTER 06
+        <article class="chapter electro">
+
+            <div class="artwork">
+
+                <svg viewBox="0 0 500 260"
+                     xmlns="http://www.w3.org/2000/svg"
+                     role="img"
+                     aria-label="Zinc copper galvanic cell">
+
+                    <defs>
+
+                        <linearGradient id="zinc">
+
+                            <stop stop-color="#64748b"/>
+                            <stop offset=".5"
+                                  stop-color="#e2e8f0"/>
+                            <stop offset="1"
+                                  stop-color="#64748b"/>
+
+                        </linearGradient>
+
+                        <linearGradient id="copper">
+
+                            <stop stop-color="#92400e"/>
+                            <stop offset=".5"
+                                  stop-color="#fdba74"/>
+                            <stop offset="1"
+                                  stop-color="#b45309"/>
+
+                        </linearGradient>
+
+                        <radialGradient id="light">
+
+                            <stop stop-color="#fef9c3"/>
+                            <stop offset=".4"
+                                  stop-color="#facc15"/>
+                            <stop offset="1"
+                                  stop-color="#facc15"
+                                  stop-opacity="0"/>
+
+                        </radialGradient>
+
+                    </defs>
+
+                    <!-- Wires -->
+
+                    <path d="M125 120 V48 H375 V120"
+                          fill="none"
+                          stroke="#94a3b8"
+                          stroke-width="4"/>
+
+                    <!-- Bulb -->
+
+                    <circle cx="250" cy="48" r="45"
+                            fill="url(#light)"/>
+
+                    <circle cx="250" cy="48" r="20"
+                            fill="#fef08a"
+                            stroke="#facc15"
+                            stroke-width="3"/>
+
+                    <path d="M242 40 L258 56
+                             M258 40 L242 56"
+                          stroke="#92400e"
+                          stroke-width="2"/>
+
+                    <!-- Solutions -->
+
+                    <rect x="52" y="155"
+                          width="146" height="72"
+                          fill="#cbd5e155"/>
+
+                    <rect x="302" y="155"
+                          width="146" height="72"
+                          fill="#0284c788"/>
+
+                    <!-- Beakers -->
+
+                    <path d="M48 125 V215
+                             Q48 230 63 230
+                             H187 Q202 230 202 215
+                             V125
+
+                             M298 125 V215
+                             Q298 230 313 230
+                             H437 Q452 230 452 215
+                             V125"
+                          stroke="#bae6fd"
+                          stroke-width="3"
+                          fill="none"/>
+
+                    <!-- Electrodes -->
+
+                    <rect x="110" y="110"
+                          width="30" height="105"
+                          rx="4" fill="url(#zinc)"/>
+
+                    <rect x="360" y="110"
+                          width="30" height="105"
+                          rx="4" fill="url(#copper)"/>
+
+                    <!-- Salt bridge -->
+
+                    <path d="M180 185 V110
+                             Q250 60 320 110
+                             V185"
+                          fill="none"
+                          stroke="#cbd5e1"
+                          stroke-width="19"/>
+
+                    <path d="M180 185 V110
+                             Q250 60 320 110
+                             V185"
+                          fill="none"
+                          stroke="#a5f3fc"
+                          stroke-width="11"/>
+
+                    <!-- Electrons -->
+
+                    <g fill="#facc15">
+
+                        <circle cx="150" cy="48" r="4"/>
+                        <circle cx="180" cy="48" r="4"/>
+                        <circle cx="320" cy="48" r="4"/>
+                        <circle cx="350" cy="48" r="4"/>
+
+                    </g>
+
+                    <g fill="#e2e8f0"
+                       font-size="14"
+                       font-family="Segoe UI,Arial"
+                       text-anchor="middle">
+
+                        <text x="125" y="100">
+                            Zn (−)
+                        </text>
+
+                        <text x="375" y="100">
+                            Cu (+)
+                        </text>
+
+                        <text x="125" y="249">
+                            ZnSO₄
+                        </text>
+
+                        <text x="375" y="249">
+                            CuSO₄
+                        </text>
+
+                    </g>
+
+                </svg>
+
             </div>
 
-            <h2>METALS</h2>
+            <div class="chapter-content">
 
-            <input
-                type="search"
-                id="topicSearch"
-                placeholder="Search topics..."
-                autocomplete="off">
+                <div class="chapter-number">
+                    CHAPTER 05
+                </div>
 
-            <div id="topicList"></div>
+                <h2>Electrochemistry</h2>
 
-            <div class="sidebar-footer">
-                SCERT CHEMISTRY
-            </div>
+                <div class="scene-count">
+                    40 interactive learning scenes
+                </div>
 
-        </aside>
+                <p class="chapter-description">
+                    Explore the fascinating relationship
+                    between chemical reactions and electricity
+                    through interactive virtual experiments.
+                </p>
 
+                <div class="tags">
 
-        <!-- MAIN TEACHING AREA -->
-
-        <section id="stage">
-
-            <div id="sceneHeader">
-
-                <span id="sectionLabel">
-                    CHAPTER 06
-                </span>
-
-                <span id="pageLabel">
-                    Page 121
-                </span>
-
-            </div>
-
-            <div id="sceneContainer">
-
-                <div id="scene">
-
-                    <div class="intro-screen">
-
-                        <div class="eyebrow">
-                            XYLEM NADAPURAM • CHEMISTRY
-                        </div>
-
-                        <h1 class="metal-title">
-                            METALS
-                        </h1>
-
-                        <p class="intro-subtitle">
-                            Exploring the world of metals
-                        </p>
-
-                        <button id="beginBtn">
-                            Begin Exploration →
-                        </button>
-
-                    </div>
+                    <span class="tag">Galvanic Cells</span>
+                    <span class="tag">Electrolysis</span>
+                    <span class="tag">Electroplating</span>
+                    <span class="tag">Batteries</span>
+                    <span class="tag">Assessment</span>
 
                 </div>
 
-                <!-- HANDWRITING LAYER -->
+                <a class="launch"
+                   href="./Electrochemistry/index.html">
 
-                <canvas id="inkCanvas"></canvas>
+                    Explore Chapter
 
-                <!-- LASER POINTER -->
+                    <span>→</span>
 
-                <div id="laserPointer"></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- TEACHER TOOLBAR -->
-
-        <aside id="toolbar">
-
-            <div class="tool-heading">
-                TEACHING TOOLS
-            </div>
-
-            <button
-                id="pointerBtn"
-                class="tool-btn active"
-                data-tool="pointer">
-
-                ↖ Pointer
-
-            </button>
-
-            <button
-                id="penBtn"
-                class="tool-btn"
-                data-tool="pen">
-
-                ✎ Pen
-
-            </button>
-
-            <button
-                id="highlightBtn"
-                class="tool-btn"
-                data-tool="highlight">
-
-                Highlight
-
-            </button>
-
-            <button
-                id="eraserBtn"
-                class="tool-btn"
-                data-tool="eraser">
-
-                Eraser
-
-            </button>
-
-            <button
-                id="laserBtn"
-                class="tool-btn"
-                data-tool="laser">
-
-                ● Laser
-
-            </button>
-
-
-            <!-- PEN COLOURS -->
-
-            <label for="penColor">
-                PEN COLOUR
-            </label>
-
-            <input
-                type="color"
-                id="penColor"
-                value="#ffffff">
-
-            <div class="colour-palette">
-
-                <button
-                    class="colour-dot"
-                    data-color="#ffffff"
-                    style="background:#ffffff"
-                    aria-label="White">
-                </button>
-
-                <button
-                    class="colour-dot"
-                    data-color="#facc15"
-                    style="background:#facc15"
-                    aria-label="Yellow">
-                </button>
-
-                <button
-                    class="colour-dot"
-                    data-color="#ef4444"
-                    style="background:#ef4444"
-                    aria-label="Red">
-                </button>
-
-                <button
-                    class="colour-dot"
-                    data-color="#4ade80"
-                    style="background:#4ade80"
-                    aria-label="Green">
-                </button>
-
-                <button
-                    class="colour-dot"
-                    data-color="#38bdf8"
-                    style="background:#38bdf8"
-                    aria-label="Blue">
-                </button>
-
-                <button
-                    class="colour-dot"
-                    data-color="#e879f9"
-                    style="background:#e879f9"
-                    aria-label="Purple">
-                </button>
+                </a>
 
             </div>
 
+        </article>
 
-            <!-- PEN THICKNESS -->
+        <!-- CHAPTER 06 -->
 
-            <label for="penWidth">
-                THICKNESS
-            </label>
+        <article class="chapter metals">
 
-            <input
-                type="range"
-                id="penWidth"
-                min="1"
-                max="30"
-                value="4">
+            <div class="artwork">
 
-            <div class="tool-divider"></div>
+                <svg viewBox="0 0 500 260"
+                     xmlns="http://www.w3.org/2000/svg"
+                     role="img"
+                     aria-label="Metal samples and mineral crystals">
 
+                    <defs>
 
-            <!-- DRAWING CONTROLS -->
+                        <linearGradient id="gold">
 
-            <button id="undoBtn">
-                ↶ Undo
-            </button>
+                            <stop stop-color="#92400e"/>
+                            <stop offset=".45"
+                                  stop-color="#fde68a"/>
+                            <stop offset="1"
+                                  stop-color="#b45309"/>
 
-            <button id="redoBtn">
-                ↷ Redo
-            </button>
+                        </linearGradient>
 
-            <button id="clearBtn">
-                Clear Ink
-            </button>
+                        <linearGradient id="silver">
 
-            <button id="saveBtn">
-                Save Ink
-            </button>
+                            <stop stop-color="#475569"/>
+                            <stop offset=".5"
+                                  stop-color="#e2e8f0"/>
+                            <stop offset="1"
+                                  stop-color="#64748b"/>
 
-            <button id="blankBtn">
-                Blank Board
-            </button>
+                        </linearGradient>
 
-            <button id="restoreBtn">
-                Return to Lesson
-            </button>
+                        <linearGradient id="cu">
 
-        </aside>
+                            <stop stop-color="#7c2d12"/>
+                            <stop offset=".5"
+                                  stop-color="#fdba74"/>
+                            <stop offset="1"
+                                  stop-color="#9a3412"/>
 
-    </main>
+                        </linearGradient>
 
+                    </defs>
 
-    <!-- ANIMATION AND LESSON CONTROLS -->
+                    <!-- Gold ingot -->
 
-    <footer id="controlBar">
+                    <polygon
+                        points="40,165 150,165 180,215 15,215"
+                        fill="url(#gold)"/>
 
-        <div class="navigation-controls">
+                    <polygon
+                        points="15,215 180,215 180,235 15,235"
+                        fill="#92400e"/>
 
-            <button id="prevBtn">
-                ◀ Previous
-            </button>
+                    <text x="98" y="201"
+                          fill="#78350f"
+                          font-size="24"
+                          font-weight="bold"
+                          text-anchor="middle">Au</text>
 
-            <button id="playBtn">
-                ▶ Play
-            </button>
+                    <!-- Iron ingot -->
 
-            <button id="pauseBtn">
-                Ⅱ Pause
-            </button>
+                    <polygon
+                        points="195,155 305,155 335,210 170,210"
+                        fill="url(#silver)"/>
 
-            <button id="resetBtn">
-                ↻ Reset
-            </button>
+                    <polygon
+                        points="170,210 335,210 335,230 170,230"
+                        fill="#475569"/>
+
+                    <text x="252" y="195"
+                          fill="#334155"
+                          font-size="24"
+                          font-weight="bold"
+                          text-anchor="middle">Fe</text>
+
+                    <!-- Copper ingot -->
+
+                    <polygon
+                        points="350,165 455,165 485,215 325,215"
+                        fill="url(#cu)"/>
+
+                    <polygon
+                        points="325,215 485,215 485,235 325,235"
+                        fill="#7c2d12"/>
+
+                    <text x="405" y="201"
+                          fill="#7c2d12"
+                          font-size="24"
+                          font-weight="bold"
+                          text-anchor="middle">Cu</text>
+
+                    <!-- Mineral crystals -->
+
+                    <polygon
+                        points="100,145 85,75 130,25 170,85 150,145"
+                        fill="#64748b"
+                        stroke="#94a3b8"/>
+
+                    <polygon
+                        points="130,25 130,110 170,85"
+                        fill="#cbd5e1"/>
+
+                    <polygon
+                        points="200,145 190,85 235,20 280,65 270,145"
+                        fill="#92400e"
+                        stroke="#d97706"/>
+
+                    <polygon
+                        points="235,20 230,100 280,65"
+                        fill="#d97706"/>
+
+                    <polygon
+                        points="325,145 310,75 360,35 410,90 385,145"
+                        fill="#475569"
+                        stroke="#94a3b8"/>
+
+                    <polygon
+                        points="360,35 355,110 410,90"
+                        fill="#94a3b8"/>
+
+                </svg>
+
+            </div>
+
+            <div class="chapter-content">
+
+                <div class="chapter-number">
+                    CHAPTER 06
+                </div>
+
+                <h2>Metals</h2>
+
+                <div class="scene-count">
+                    32 interactive learning scenes
+                </div>
+
+                <p class="chapter-description">
+                    Discover minerals, ores, metal extraction,
+                    purification and corrosion through
+                    visual explanations and animations.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">Minerals & Ores</span>
+                    <span class="tag">Metallurgy</span>
+                    <span class="tag">Extraction</span>
+                    <span class="tag">Corrosion</span>
+                    <span class="tag">Assessment</span>
+
+                </div>
+
+                <a class="launch"
+                   href="./Metals/index.html">
+
+                    Explore Chapter
+
+                    <span>→</span>
+
+                </a>
+
+            </div>
+
+        </article>
+
+    </section>
+
+    <!-- STATISTICS -->
+
+    <section class="statistics">
+
+        <div class="stat">
+
+            <strong>72</strong>
+
+            <span>Learning Scenes</span>
 
         </div>
 
-        <div class="speed-control">
+        <div class="stat">
 
-            <label for="animationSpeed">
-                Speed
-            </label>
+            <strong>02</strong>
 
-            <select id="animationSpeed">
-
-                <option value="0.5">0.5×</option>
-
-                <option value="1" selected>1×</option>
-
-                <option value="1.5">1.5×</option>
-
-                <option value="2">2×</option>
-
-            </select>
+            <span>Complete Chapters</span>
 
         </div>
 
-        <div class="scene-counter">
+        <div class="stat">
 
-            <span id="sceneNumber">01</span>
+            <strong>100%</strong>
 
-            /
-
-            <span id="totalScenes">32</span>
+            <span>Free Access</span>
 
         </div>
 
-        <button id="nextBtn" class="primary-btn">
-            Next ▶
-        </button>
+    </section>
 
-    </footer>
+    <!-- STUDIO FEATURES -->
 
+    <section class="features">
 
-    <!-- LESSON PROGRESS -->
+        <div class="feature">
+            Interactive Animations
+        </div>
 
-    <div id="progressTrack">
+        <div class="feature">
+            Virtual Laboratories
+        </div>
 
-        <div id="lessonProgress"></div>
+        <div class="feature">
+            Digital Whiteboard
+        </div>
 
-    </div>
+        <div class="feature">
+            Classroom Mode
+        </div>
 
+        <div class="feature">
+            Chapter Assessment
+        </div>
 
-    <!-- APPLICATION MODULES -->
+        <div class="feature">
+            Mobile Friendly
+        </div>
 
-    <script src="metals.js"></script>
+    </section>
 
-    <script src="animations.js"></script>
+</main>
 
-    <script src="quiz.js"></script>
+<footer>
 
-    <script src="whiteboard.js"></script>
+    <strong>XYLEM NADAPURAM</strong>
 
-    <script src="script.js"></script>
+    <p>
+        Interactive Chemistry Studio
+        • Standard X
+        • SCERT Kerala
+    </p>
+
+    <p>
+        Designed for modern classrooms.
+        Learn beyond the textbook.
+    </p>
+
+</footer>
 
 </body>
 
