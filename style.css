@@ -1076,3 +1076,1070 @@ body.classroom-mode #stage {
         transition-duration: .01ms !important;
     }
 }
+
+/* ==========================================
+   XYLEM CHEMISTRY STUDIO V3.0
+   SCREEN OPTIMISATION UPDATE
+========================================== */
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+/* COMPACT HEADER */
+
+#appHeader {
+    min-height: 58px;
+    padding: 8px 18px;
+}
+
+.brand h1 {
+    font-size: clamp(17px, 2vw, 23px);
+}
+
+.brand-subtitle {
+    font-size: 9px;
+    margin-top: 4px;
+}
+
+.header-actions button {
+    padding: 9px 12px;
+}
+
+/* MAXIMUM TEACHING SPACE */
+
+#workspace {
+    padding: 7px;
+    gap: 7px;
+}
+
+#stage {
+    border-radius: 12px;
+}
+
+#sceneHeader {
+    padding: 8px 14px;
+    font-size: 10px;
+}
+
+#scene {
+    padding: 14px 20px;
+    gap: 12px;
+    overscroll-behavior: contain;
+}
+
+#scene h2 {
+    font-size: clamp(22px, 2.8vw, 38px);
+    margin: 4px 0;
+}
+
+#scene h3 {
+    margin: 6px 0;
+}
+
+#scene p {
+    font-size: clamp(15px, 1.5vw, 21px);
+    line-height: 1.5;
+}
+
+/* INTRODUCTION SCREEN FIX */
+
+.intro-screen {
+    min-height: 0;
+    flex: 1 0 auto;
+    width: 100%;
+    justify-content: center;
+    gap: clamp(8px, 2vh, 20px);
+    padding: 10px;
+}
+
+.metal-title {
+    font-size: clamp(
+        42px,
+        min(9vw, 17vh),
+        120px
+    );
+
+    line-height: 1.1;
+    letter-spacing: 4px;
+    margin: 8px 0;
+}
+
+.intro-subtitle {
+    font-size: clamp(15px, 2vw, 24px) !important;
+    letter-spacing: 2px;
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+}
+
+#beginBtn {
+    padding: 12px 22px;
+    font-size: 15px;
+}
+
+/* CHAPTER NAVIGATION */
+
+#sidebar {
+    width: 210px;
+    padding: 11px;
+}
+
+#sidebar h2 {
+    font-size: 20px;
+    margin: 8px 0;
+}
+
+#topicSearch {
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+#topicList {
+    gap: 5px;
+}
+
+#topicList button {
+    padding: 9px 10px;
+    font-size: 12px;
+}
+
+/* COMPACT TEACHING TOOLBAR */
+
+#toolbar {
+    width: 118px;
+    padding: 6px;
+    gap: 4px;
+    border-radius: 10px;
+}
+
+.tool-heading {
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 3px 0;
+}
+
+#toolbar button {
+    min-height: 27px;
+    padding: 5px 3px;
+    font-size: 11px;
+    border-radius: 6px;
+}
+
+#toolbar label {
+    font-size: 9px;
+    margin-top: 3px;
+}
+
+#penColor {
+    height: 24px;
+    min-height: 24px;
+}
+
+.colour-palette {
+    gap: 4px;
+    padding: 2px;
+}
+
+#toolbar .colour-dot {
+    height: 20px;
+    min-height: 20px;
+}
+
+#penWidth {
+    margin: 3px 0;
+    min-height: 15px;
+}
+
+.tool-divider {
+    margin: 2px 0;
+}
+
+/* ANIMATION DISPLAY */
+
+.animation-panel {
+    width: 100%;
+    max-width: 1150px;
+    padding: 8px;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.animation-panel svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 42vh;
+    max-height: 42dvh;
+    object-fit: contain;
+    margin: auto;
+}
+
+.animation-panel img,
+.animation-panel video {
+    max-width: 100%;
+    max-height: 42vh;
+    max-height: 42dvh;
+    object-fit: contain;
+}
+
+/* DEFINITIONS AND EQUATIONS */
+
+.definition {
+    padding: 12px 16px;
+    font-size: clamp(16px, 1.8vw, 24px);
+    line-height: 1.5;
+}
+
+.point-card {
+    padding: 10px 15px;
+    font-size: clamp(15px, 1.6vw, 22px);
+    line-height: 1.5;
+}
+
+.points-list {
+    gap: 7px;
+}
+
+.equation {
+    padding: 12px;
+    font-size: clamp(18px, 2.3vw, 30px);
+}
+
+.reveal-button {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+/* MINERAL CARDS */
+
+.mineral-grid,
+.card-grid {
+    gap: 10px;
+}
+
+.mineral-card,
+.content-card {
+    padding: 12px 8px;
+}
+
+.rock {
+    width: 90px;
+    height: 80px;
+    margin: 6px auto;
+}
+
+/* COMPACT BOTTOM CONTROLS */
+
+#controlBar {
+    min-height: 48px;
+    padding: 5px 10px;
+    gap: 8px;
+}
+
+#controlBar button {
+    padding: 9px 12px;
+    font-size: 12px;
+}
+
+#animationSpeed {
+    padding: 6px;
+}
+
+.navigation-controls {
+    gap: 5px;
+}
+
+#progressTrack {
+    height: 3px;
+}
+
+/* CLASSROOM MODE */
+
+body.classroom-mode #appHeader {
+    min-height: 50px;
+    padding: 6px 15px;
+}
+
+body.classroom-mode #scene {
+    padding: 12px 18px;
+}
+
+body.classroom-mode .animation-panel svg {
+    max-height: 46vh;
+    max-height: 46dvh;
+}
+
+/* TABLET LANDSCAPE */
+
+@media (max-width: 1100px) {
+
+    #sidebar {
+        width: 180px;
+    }
+
+    #toolbar {
+        width: 100px;
+    }
+
+    #scene {
+        padding: 10px;
+    }
+
+    .definition {
+        font-size: 18px;
+    }
+
+    .header-actions button {
+        font-size: 11px;
+    }
+}
+
+/* SHORT SCREENS */
+
+@media (max-height: 750px) {
+
+    #appHeader {
+        min-height: 50px;
+        padding: 6px 15px;
+    }
+
+    #scene {
+        gap: 8px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #toolbar {
+        gap: 3px;
+    }
+
+    #toolbar button {
+        min-height: 25px;
+        padding: 4px 2px;
+    }
+
+    .metal-title {
+        font-size: clamp(
+            40px,
+            min(8vw, 15vh),
+            105px
+        );
+    }
+
+    .animation-panel svg {
+        max-height: 36vh;
+        max-height: 36dvh;
+    }
+
+    body.classroom-mode .animation-panel svg {
+        max-height: 40vh;
+        max-height: 40dvh;
+    }
+
+    #controlBar {
+        min-height: 44px;
+    }
+}
+
+/* TABLET PORTRAIT AND MOBILE */
+
+@media (max-width: 760px) {
+
+    #appHeader {
+        padding: 8px;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .brand h1 {
+        font-size: 16px;
+    }
+
+    .brand-subtitle {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .header-actions {
+        width: 100%;
+        gap: 4px;
+    }
+
+    .header-actions button {
+        flex: 1;
+        padding: 8px 3px;
+        font-size: 10px;
+    }
+
+    #workspace {
+        padding: 4px;
+        gap: 4px;
+    }
+
+    #sidebar {
+        width: min(240px, 80vw);
+        top: 105px;
+        bottom: 85px;
+    }
+
+    #toolbar {
+        width: 74px;
+        padding: 4px;
+        gap: 4px;
+    }
+
+    #toolbar button {
+        min-height: 32px;
+        font-size: 10px;
+    }
+
+    #scene {
+        padding: 9px;
+        gap: 10px;
+    }
+
+    #sceneHeader {
+        padding: 6px;
+        font-size: 8px;
+        letter-spacing: 0;
+    }
+
+    .metal-title {
+        font-size: clamp(28px, 9vw, 65px);
+        letter-spacing: 1px;
+    }
+
+    .intro-screen {
+        gap: 12px;
+    }
+
+    .intro-subtitle {
+        font-size: 15px !important;
+        letter-spacing: 0;
+    }
+
+    #scene h2 {
+        font-size: 23px;
+    }
+
+    .definition,
+    .point-card {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .animation-panel svg {
+        max-height: 35vh;
+        max-height: 35dvh;
+    }
+
+    #controlBar {
+        gap: 4px;
+        padding: 5px;
+    }
+
+    #controlBar button {
+        font-size: 10px;
+        padding: 8px 5px;
+    }
+
+    .speed-control {
+        font-size: 10px;
+    }
+
+    .scene-counter {
+        font-size: 11px;
+        min-width: 45px;
+    }
+
+    .mineral-grid,
+    .card-grid {
+        grid-template-columns:
+            repeat(auto-fit, minmax(110px, 1fr));
+    }
+}
+
+/* TOUCH DEVICE OPTIMISATION */
+
+@media (pointer: coarse) {
+
+    #toolbar button {
+        min-height: 34px;
+    }
+
+    button {
+        touch-action: manipulation;
+    }
+
+    #inkCanvas.drawing {
+        touch-action: none;
+    }
+
+    #scene {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ==========================================
+   XYLEM CHEMISTRY STUDIO V3.0
+   FINAL PREMIUM CLASSROOM INTERFACE
+========================================== */
+
+:root {
+    --background: #070e19;
+    --panel: #101b2c;
+    --panel-light: #1a2a40;
+    --border: #293e58;
+    --primary: #2563eb;
+    --accent: #38bdf8;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+}
+
+html, body {
+    height: 100%;
+    height: 100dvh;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* PREMIUM HEADER */
+
+#appHeader {
+    background: linear-gradient(
+        110deg,
+        #101d30,
+        #0a1423
+    );
+    border-bottom: 1px solid #38bdf833;
+    box-shadow: 0 4px 20px #0003;
+}
+
+.brand h1 {
+    font-weight: 900;
+    letter-spacing: 1.8px;
+}
+
+.brand-subtitle {
+    color: #7dd3fc;
+}
+
+.header-actions button {
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+/* PROFESSIONAL BUTTONS */
+
+button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+button:hover:not(:disabled) {
+    border-color: #38bdf8;
+}
+
+button.active,
+.primary-btn {
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+    box-shadow: 0 3px 12px #2563eb25;
+}
+
+button:disabled {
+    box-shadow: none;
+}
+
+/* WORKSPACE */
+
+#workspace {
+    position: relative;
+    min-height: 0;
+    padding: 8px;
+    gap: 8px;
+}
+
+/* TOPIC NAVIGATION */
+
+#sidebar {
+    border-radius: 12px;
+    background: linear-gradient(
+        180deg,
+        #142238,
+        #0c1727
+    );
+}
+
+#topicList {
+    scrollbar-width: thin;
+    scrollbar-color: #334155 transparent;
+}
+
+#topicList button {
+    border-radius: 8px;
+    border-color: #ffffff0d;
+    background: #ffffff05;
+}
+
+#topicList button:hover {
+    background: #38bdf812;
+}
+
+#topicList button.active {
+    background: linear-gradient(
+        110deg,
+        #2563eb,
+        #1e40af
+    );
+    border-color: #60a5fa;
+}
+
+/* MAIN TEACHING STAGE */
+
+#stage {
+    border-radius: 14px;
+    background: radial-gradient(
+        ellipse at 50% 35%,
+        #172d44,
+        #0b1524 75%
+    );
+}
+
+#sceneHeader {
+    background: #ffffff03;
+    gap: 10px;
+    align-items: center;
+}
+
+#sectionLabel {
+    color: #7dd3fc;
+    font-weight: 700;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#pageLabel {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+#scene {
+    scrollbar-width: thin;
+    scrollbar-color: #334155 transparent;
+    overscroll-behavior: contain;
+}
+
+#scene h2 {
+    letter-spacing: -.5px;
+    color: #f8fafc;
+}
+
+#scene h3 {
+    line-height: 1.3;
+}
+
+/* LARGE SCIENTIFIC ANIMATIONS */
+
+.animation-panel {
+    width: 100%;
+    max-width: 1400px;
+    padding: 6px;
+    background: #091423;
+    border: 1px solid #38bdf833;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px #0002;
+}
+
+.animation-panel svg {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+    max-height: 46vh !important;
+    max-height: 46dvh !important;
+    object-fit: contain;
+}
+
+/* LESSON CONTENT */
+
+.definition {
+    background: linear-gradient(
+        110deg,
+        #172d43,
+        #122238
+    );
+    border-left: 4px solid #38bdf8;
+    border-radius: 10px;
+}
+
+.point-card {
+    background: #15263b;
+    border-left: 3px solid #38bdf8;
+}
+
+.equation {
+    background: #0b201e;
+    border-color: #4ade8044;
+    color: #a7f3d0;
+}
+
+.reveal-button,
+#beginBtn {
+    border-radius: 9px;
+    background: linear-gradient(
+        135deg,
+        #0284c7,
+        #075985
+    );
+    font-weight: 700;
+}
+
+/* MINERAL PHOTOGRAPHS */
+
+.mineral-card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.mineral-card img {
+    max-height: 24vh;
+    max-height: 24dvh;
+    object-fit: contain;
+}
+
+.mineral-card h3 {
+    overflow-wrap: anywhere;
+}
+
+/* PROFESSIONAL WHITEBOARD TOOLBAR */
+
+#toolbar {
+    background: linear-gradient(
+        180deg,
+        #142238,
+        #0d1726
+    );
+    border-radius: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    overscroll-behavior: contain;
+}
+
+#toolbar > * {
+    flex-shrink: 0;
+}
+
+#toolbar button {
+    transition:
+        background .15s,
+        border-color .15s;
+}
+
+#toolbar .tool-btn.active {
+    background: #075985;
+    border-color: #38bdf8;
+    color: #ffffff;
+}
+
+.tool-heading {
+    color: #7dd3fc;
+    font-weight: 800;
+}
+
+#penColor {
+    cursor: pointer;
+}
+
+#penWidth {
+    accent-color: #38bdf8;
+    cursor: pointer;
+}
+
+#toolbar .colour-dot {
+    border: 2px solid #ffffff25;
+}
+
+#toolbar .colour-dot:hover {
+    border-color: #ffffff;
+}
+
+#inkCanvas.drawing {
+    touch-action: none;
+    user-select: none;
+}
+
+/* BOTTOM TEACHING CONTROLS */
+
+#controlBar {
+    background: linear-gradient(
+        90deg,
+        #101d30,
+        #0b1524
+    );
+    border-top: 1px solid #38bdf833;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+#controlBar button {
+    white-space: nowrap;
+}
+
+.navigation-controls {
+    flex-wrap: wrap;
+}
+
+#playBtn {
+    color: #86efac;
+}
+
+#pauseBtn {
+    color: #fde68a;
+}
+
+#resetBtn {
+    color: #bae6fd;
+}
+
+#nextBtn {
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+}
+
+.scene-counter {
+    font-variant-numeric: tabular-nums;
+    font-weight: 800;
+}
+
+#progressTrack {
+    height: 4px;
+    flex-shrink: 0;
+}
+
+#lessonProgress {
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #38bdf8,
+        #4ade80
+    );
+}
+
+/* MAXIMUM CLASSROOM VIEW */
+
+body.classroom-mode #sidebar {
+    display: none;
+}
+
+body.classroom-mode #workspace {
+    padding: 4px;
+    gap: 5px;
+}
+
+body.classroom-mode #scene {
+    padding: 10px 16px;
+}
+
+body.classroom-mode .animation-panel {
+    max-width: 1600px;
+}
+
+body.classroom-mode .animation-panel svg {
+    max-height: 56vh !important;
+    max-height: 56dvh !important;
+}
+
+body.classroom-mode #stage {
+    border-color: #38bdf855;
+}
+
+/* TABLET LANDSCAPE */
+
+@media (min-width: 761px)
+       and (max-width: 1100px) {
+
+    #sidebar {
+        width: 165px;
+    }
+
+    #toolbar {
+        width: 100px;
+    }
+
+    #scene {
+        padding: 10px;
+    }
+
+    #scene h2 {
+        font-size: 27px;
+    }
+
+    .animation-panel svg {
+        max-height: 43dvh !important;
+    }
+
+}
+
+/* TABLET PORTRAIT AND MOBILE */
+
+@media (max-width: 760px) {
+
+    #workspace {
+        padding: 4px;
+        gap: 4px;
+    }
+
+    #sidebar {
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        left: 4px;
+        width: min(270px, 85vw);
+        z-index: 50;
+        box-shadow: 0 10px 40px #000a;
+    }
+
+    #toolbar {
+        width: 82px;
+        padding: 4px;
+        gap: 4px;
+    }
+
+    #toolbar button {
+        font-size: 10px;
+        min-height: 34px;
+        padding: 5px 2px;
+    }
+
+    #scene {
+        padding: 8px;
+        gap: 9px;
+    }
+
+    #scene h2 {
+        font-size: clamp(20px, 4vw, 28px);
+    }
+
+    .animation-panel {
+        padding: 2px;
+    }
+
+    .animation-panel svg {
+        max-height: 38dvh !important;
+    }
+
+    .mineral-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr))
+            !important;
+    }
+
+    .mineral-card img {
+        height: 110px !important;
+    }
+
+    #controlBar {
+        gap: 5px;
+        justify-content: center;
+    }
+
+    #controlBar button {
+        padding: 8px 6px;
+        font-size: 10px;
+    }
+
+    .navigation-controls {
+        justify-content: center;
+    }
+
+    .equation {
+        font-size: 18px;
+    }
+
+    .definition,
+    .point-card {
+        font-size: 16px;
+    }
+
+}
+
+/* TOUCHSCREEN CONTROLS */
+
+@media (pointer: coarse) {
+
+    .header-actions button,
+    #controlBar button {
+        min-height: 40px;
+    }
+
+    #toolbar button {
+        min-height: 36px;
+    }
+
+    #toolbar .colour-dot {
+        min-height: 24px;
+    }
+
+    #topicList button {
+        min-height: 42px;
+    }
+
+    .reveal-button {
+        min-height: 44px;
+    }
+
+    input[type="range"] {
+        min-height: 24px;
+    }
+
+}
+
+/* SHORT LANDSCAPE SCREENS */
+
+@media (max-height: 650px) {
+
+    #scene {
+        gap: 6px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    .animation-panel svg {
+        max-height: 36dvh !important;
+    }
+
+    body.classroom-mode .animation-panel svg {
+        max-height: 44dvh !important;
+    }
+
+    #scene h2 {
+        margin: 4px 0;
+    }
+
+    .definition {
+        padding: 8px 12px;
+    }
+
+}
+
+/* END OF V3.0 INTERFACE */

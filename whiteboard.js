@@ -325,7 +325,6 @@ window.Whiteboard = (() => {
     canvas.addEventListener("pointermove", event => {
 
         if (tool === "laser") {
-
             moveLaser(event);
 
             return;
@@ -478,7 +477,9 @@ window.Whiteboard = (() => {
             if (confirm(
                 "Clear handwriting on this board?"
             )) {
+
                 clear();
+
             }
 
         });
@@ -544,6 +545,7 @@ window.Whiteboard = (() => {
         const output = document.createElement("canvas");
 
         output.width = canvas.width;
+
         output.height = canvas.height;
 
         const outputContext = output.getContext("2d");
@@ -574,7 +576,9 @@ window.Whiteboard = (() => {
             link.click();
 
             setTimeout(() => {
+
                 URL.revokeObjectURL(url);
+
             }, 1000);
 
         }, "image/png");

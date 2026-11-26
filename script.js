@@ -323,6 +323,50 @@ function renderUses(topic) {
 }
 
 // ==========================================
+// V3.0 - MINERAL VISUAL ENGINE
+// ==========================================
+
+
+function mineralPhoto(name) {
+
+    const file = name.trim().toLowerCase() + ".jpg";
+    const path = "./assets/images/" + file;
+
+    return `
+        <img
+            src="${path}"
+            alt="${escapeHTML(name)}"
+            draggable="false"
+            style="
+                display:block;
+                width:100%;
+                height:180px;
+                object-fit:contain;
+                background:#091321;
+                border-radius:12px;
+                margin-bottom:8px;
+            "
+            onerror="
+                this.style.display='none';
+                this.nextElementSibling.style.display='block';
+            "
+        >
+
+        <div style="
+            display:none;
+            padding:15px;
+            color:#ff7777;
+            border:1px solid #ef4444;
+            border-radius:8px;
+        ">
+            Image not found:<br>
+            ${path}
+        </div>
+    `;
+}
+
+
+// ==========================================
 // MINERALS
 // ==========================================
 
@@ -331,7 +375,7 @@ function renderMinerals(topic) {
     return `
 
         <div class="eyebrow">
-            OCCURRENCE OF METALS
+            EXPLORE NATURAL MINERALS
         </div>
 
         <h2>Minerals</h2>
@@ -342,24 +386,35 @@ function renderMinerals(topic) {
 
         <h3>Minerals of Aluminium</h3>
 
-        <div class="mineral-grid">
+        <div class="mineral-grid"
+             style="
+                display:grid;
+                grid-template-columns:repeat(3,minmax(0,1fr));
+                gap:12px;
+             ">
 
-            ${topic.examples.map(([name, formula]) => `
+            ${topic.examples.map(([name,formula],i)=>`
 
-                <button class="mineral-card"
-                        onclick="inspectMineral(
-                            '${name}',
-                            '${formula}'
-                        )">
+                <button
+                    class="mineral-card"
+                    data-specimen="${name}"
+                    style="
+                        min-width:0;
+                        padding:10px;
+                        animation:fadeIn .6s ${i*.2}s both;
+                        transition:all .3s;
+                    "
+                    onclick="inspectMineral(
+                        '${name}',
+                        '${formula}'
+                    )">
 
-                    <div class="rock
-                        ${name.toLowerCase()}">
-                    </div>
+                    ${mineralPhoto(name)}
 
                     <h3>${escapeHTML(name)}</h3>
 
-                    <small>
-                        ${escapeHTML(formula)}
+                    <small style="color:#38bdf8">
+                        Tap to explore
                     </small>
 
                 </button>
@@ -374,23 +429,79 @@ function renderMinerals(topic) {
 
         <button class="reveal-button"
                 onclick="goToScene(4)">
+
             Which mineral is an ore? →
+
         </button>
 
     `;
-
 }
 
-function inspectMineral(name, formula) {
+function inspectMineral(name,formula) {
 
     const info = $("mineralInfo");
 
+    const descriptions = {
+
+        Clay:
+            "Clay contains aluminium compounds. "
+            + "Kaolinite is an example.",
+
+        Bauxite:
+            "Bauxite is rich in aluminium-bearing "
+            + "minerals and is the principal ore "
+            + "of aluminium.",
+
+        Cryolite:
+            "Cryolite is an aluminium-containing "
+            + "mineral used in aluminium extraction."
+
+    };
+
+    document.querySelectorAll("[data-specimen]")
+        .forEach(card => {
+
+            const active =
+                card.dataset.specimen === name;
+
+            card.style.borderColor =
+                active ? "#38bdf8" : "";
+
+            card.style.boxShadow =
+                active
+                ? "0 0 18px #38bdf844"
+                : "";
+
+        });
+
     info.classList.remove("hidden");
 
-    info.textContent =
-        name + " (" + formula + ")"
-        + " is a mineral of aluminium.";
+    info.innerHTML = `
 
+        <h3 style="color:#38bdf8;margin:5px">
+
+            ${escapeHTML(name)}
+
+        </h3>
+
+        <div style="
+            font-size:clamp(18px,3vw,30px);
+            color:#facc15;
+            font-weight:bold;
+            margin:8px;
+        ">
+
+            ${escapeHTML(formula)}
+
+        </div>
+
+        <p>
+
+            ${escapeHTML(descriptions[name] || "")}
+
+        </p>
+
+    `;
 }
 
 // ==========================================
@@ -399,37 +510,49 @@ function inspectMineral(name, formula) {
 
 function renderOreSelection(topic) {
 
-    const minerals = [
-        ["Clay", "Al₂O₃·2SiO₂·2H₂O"],
-        ["Bauxite", "Al₂O₃·2H₂O"],
-        ["Cryolite", "Na₃AlF₆"]
-    ];
+    const minerals = topics.find(
+        item => item.type === "minerals"
+    ).examples;
 
     return `
 
         <div class="eyebrow">
-            MINERAL OR ORE?
+            THINK • OBSERVE • SELECT
         </div>
 
         <h2>Which is the ore of aluminium?</h2>
 
-        <p>Select the correct mineral.</p>
+        <p style="color:#94a3b8">
+            Select the correct specimen.
+        </p>
 
-        <div class="mineral-grid">
+        <div class="mineral-grid"
+             style="
+                display:grid;
+                grid-template-columns:repeat(3,minmax(0,1fr));
+                gap:12px;
+             ">
 
-            ${minerals.map(([name, formula]) => `
+            ${minerals.map(([name,formula],i)=>`
 
-                <button class="mineral-card"
-                        data-mineral="${name}"
-                        onclick="selectOre('${name}')">
+                <button
+                    class="mineral-card"
+                    data-mineral="${name}"
+                    style="
+                        min-width:0;
+                        padding:10px;
+                        transition:all .3s;
+                        animation:fadeIn .6s ${i*.2}s both;
+                    "
+                    onclick="selectOre('${name}')">
 
-                    <div class="rock
-                        ${name.toLowerCase()}">
-                    </div>
+                    ${mineralPhoto(name)}
 
-                    <h3>${name}</h3>
+                    <h3>${escapeHTML(name)}</h3>
 
-                    <small>${formula}</small>
+                    <small>
+                        ${escapeHTML(formula)}
+                    </small>
 
                 </button>
 
@@ -444,26 +567,52 @@ function renderOreSelection(topic) {
         <div id="oreDefinition"
              class="definition hidden">
 
-            <strong>ORE</strong>
-
-            <br>
+            <h3 style="color:#4ade80">
+                ORE
+            </h3>
 
             ${escapeHTML(topic.definition)}
+
+            <div style="
+                margin-top:15px;
+                font-weight:bold;
+                color:#38bdf8;
+            ">
+
+                All ores are minerals,
+                but all minerals are not ores.
+
+            </div>
 
         </div>
 
         <button class="reveal-button"
                 onclick="revealOreDefinition()">
+
             Reveal Definition
+
+        </button>
+
+        <button class="reveal-button"
+                onclick="resetOreSelection()">
+
+            Try Again
+
         </button>
 
     `;
-
 }
+
+// ==========================================
+// CHECK STUDENT ANSWER
+// ==========================================
 
 function selectOre(name) {
 
     const feedback = $("oreFeedback");
+
+    const correct =
+        name === topics[currentScene].answer;
 
     feedback.classList.remove("hidden");
 
@@ -471,47 +620,149 @@ function selectOre(name) {
         .forEach(card => {
 
             card.classList.remove(
-                "correct", "incorrect"
+                "correct","incorrect"
             );
 
-            if (card.dataset.mineral === name) {
+            card.style.boxShadow = "";
+            card.style.borderColor = "";
+            card.style.opacity = "1";
+
+            if(card.dataset.mineral === name) {
 
                 card.classList.add(
-                    name === "Bauxite"
-                        ? "correct"
-                        : "incorrect"
+                    correct ? "correct" : "incorrect"
                 );
+
+                card.style.borderColor =
+                    correct ? "#22c55e" : "#ef4444";
+
+                card.style.boxShadow =
+                    correct
+                    ? "0 0 20px #22c55e55"
+                    : "0 0 15px #ef444444";
+
+            } else if(correct) {
+
+                card.style.opacity = ".45";
 
             }
 
         });
 
-    if (name === "Bauxite") {
+    if(correct) {
 
         feedback.style.color = "#86efac";
 
-        feedback.textContent =
-            "Correct! Aluminium can be extracted "
-            + "economically from bauxite.";
+        feedback.innerHTML = `
+
+            <h3>✓ Correct! Bauxite</h3>
+
+            <p>
+                Aluminium can be extracted
+                economically from bauxite.
+            </p>
+
+            <div style="
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:12px;
+                margin:12px 0;
+            ">
+
+                <strong>Bauxite</strong>
+
+                <span style="color:#38bdf8">
+                    →
+                </span>
+
+                <strong>Alumina</strong>
+
+                <span style="color:#38bdf8">
+                    →
+                </span>
+
+                <strong style="
+                    color:#e2e8f0;
+                    background:linear-gradient(
+                        135deg,#334155,#64748b
+                    );
+                    padding:12px;
+                    border-radius:8px;
+                    animation:fadeIn 1s both;
+                ">
+
+                    Aluminium (Al)
+
+                </strong>
+
+            </div>
+
+            <small>
+                Overall extraction process
+            </small>
+
+        `;
 
         revealOreDefinition();
 
     } else {
 
+        $("oreDefinition").classList.add("hidden");
+
         feedback.style.color = "#facc15";
 
-        feedback.textContent =
-            name + " is a mineral of aluminium. "
-            + "However, bauxite is its principal ore.";
+        feedback.innerHTML = `
+
+            <h3>Try Again!</h3>
+
+            <p>
+                ${escapeHTML(name)} contains aluminium,
+                but is not its principal commercial ore.
+            </p>
+
+        `;
 
     }
 
 }
 
+// ==========================================
+// REVEAL ORE DEFINITION
+// ==========================================
+
 function revealOreDefinition() {
 
     $("oreDefinition")
         ?.classList.remove("hidden");
+
+}
+
+// ==========================================
+// RESET ORE ACTIVITY
+// ==========================================
+
+function resetOreSelection() {
+
+    $("oreFeedback")
+        ?.classList.add("hidden");
+
+    $("oreDefinition")
+        ?.classList.add("hidden");
+
+    document.querySelectorAll("[data-mineral]")
+        .forEach(card => {
+
+            card.classList.remove(
+                "correct","incorrect"
+            );
+
+            card.style.opacity = "1";
+            card.style.boxShadow = "";
+            card.style.borderColor = "";
+
+        });
 
 }
 
@@ -1239,3 +1490,111 @@ function initialiseStudio() {
 }
 
 initialiseStudio();
+
+// ==========================================
+// V3.0 COLLAPSIBLE TEACHING TOOLBAR
+// ==========================================
+
+(() => {
+
+    const toolsButton =
+        document.getElementById("toggleToolsBtn");
+
+    if (!toolsButton) return;
+
+    function toggleTeachingTools() {
+
+        const hidden =
+            document.body.classList.toggle(
+                "tools-hidden"
+            );
+
+        toolsButton.textContent = hidden
+            ? "✎ Show Tools"
+            : "✎ Hide Tools";
+
+        toolsButton.setAttribute(
+            "aria-expanded",
+            String(!hidden)
+        );
+
+        if (hidden) {
+            window.Whiteboard?.setTool("pointer");
+        }
+
+    }
+
+    toolsButton.addEventListener(
+        "click",
+        toggleTeachingTools
+    );
+
+})();
+
+// ==========================================
+// V3.1 SMART AUTOMATIC LESSON SCROLLING
+// ==========================================
+
+(() => {
+
+    const teachingArea =
+        document.getElementById("scene");
+
+    if (!teachingArea) return;
+
+    let scrollTimer;
+    let previousHeight = teachingArea.scrollHeight;
+
+    const observer = new MutationObserver(records => {
+
+        const newHeight = teachingArea.scrollHeight;
+
+        const newLesson = records.some(record =>
+            record.type === "childList" &&
+            record.target === teachingArea &&
+            record.removedNodes.length > 0
+        );
+
+        if (newLesson) {
+
+            clearTimeout(scrollTimer);
+
+            teachingArea.scrollTo({
+                top: 0,
+                behavior: "instant"
+            });
+
+            previousHeight = newHeight;
+
+            return;
+        }
+
+        if (newHeight > previousHeight + 5) {
+
+            clearTimeout(scrollTimer);
+
+            scrollTimer = setTimeout(() => {
+
+                teachingArea.scrollTo({
+                    top: teachingArea.scrollHeight,
+                    behavior: "smooth"
+                });
+
+            }, 150);
+
+        }
+
+        previousHeight = newHeight;
+
+    });
+
+    observer.observe(teachingArea, {
+
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["class", "style", "hidden"]
+
+    });
+
+})();
