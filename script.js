@@ -1598,3 +1598,89 @@ initialiseStudio();
     });
 
 })();
+
+// ==========================================
+// V3.1 HIDE / SHOW TOOLS - FIX
+// ==========================================
+
+(() => {
+
+    function initializeToolsToggle() {
+
+        const oldButton =
+            document.getElementById("toggleToolsBtn");
+
+        const toolbar =
+            document.getElementById("toolbar");
+
+        if (!oldButton || !toolbar) return;
+
+        // Remove previous event handlers
+        const button = oldButton.cloneNode(true);
+
+        oldButton.replaceWith(button);
+
+        function updateButton() {
+
+            const hidden =
+                document.body.classList.contains(
+                    "tools-hidden"
+                );
+
+            button.textContent = hidden
+                ? "✎ Show Tools"
+                : "✎ Hide Tools";
+
+            button.setAttribute(
+                "aria-expanded",
+                String(!hidden)
+            );
+
+            toolbar.style.display =
+                hidden ? "none" : "";
+
+        }
+
+        button.addEventListener("click", event => {
+
+            event.preventDefault();
+
+            const hidden =
+                document.body.classList.toggle(
+                    "tools-hidden"
+                );
+
+            if (hidden) {
+                window.Whiteboard?.setTool("pointer");
+            }
+
+            updateButton();
+
+            requestAnimationFrame(() => {
+                window.dispatchEvent(
+                    new Event("resize")
+                );
+            });
+
+        });
+
+        updateButton();
+
+        console.log("Tools Toggle Ready");
+
+    }
+
+    if (document.readyState === "loading") {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initializeToolsToggle
+        );
+
+    } else {
+
+        initializeToolsToggle();
+
+    }
+
+})();
